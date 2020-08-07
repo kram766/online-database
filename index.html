@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Active fault in india</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.1/css/ol.css" type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.1/build/ol.js"></script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function(){
@@ -73,7 +77,7 @@
     </div>
     <div class="fault-mapping">
         <div class="fault-img">
-            <img src="images/activeFMap.jpg" >
+            <img src="images/Dasgupta2000.jpg" >
 
         </div>
         <div class="image-info">
@@ -82,5 +86,196 @@
         
     </div>
     </div>
+    <div class="map-section">
+      <div class="map-content">
+        <form>
+          <label for="fault_name" >Fault's Name</label>
+          <input type="text" id="fault_name" class="fault_name" />
+        </form>
+         <h3>Geographic Characteristics</h3>
+         <div class="geo-char-country">
+          <label for="country_name" >Country Name</label>
+          <select id="country_name">
+            <option id="select">Select</option>
+            <option id="Afganistan">Afganistan</option>
+            <option id="China">China </option>
+            <option id="India">India</option>
+            <option id="Iran">Iran</option>
+            <option id="Kyrgyzstan">Kyrgyzstan</option>
+            <option id="Pakistan">Pakistan</option>
+            <option id="Tajikistan">Tajikistan</option>
+          </select>        
+         </div>
+         <div class="geo-char-province">
+          <label for="province_name" >Province</label>
+          <select id="province_name">
+            <option id="select">Select</option>
+            <option id="Alai Valley">Alai Valley</option>
+            <option id="Central Tibet">Central Tibet </option>
+            <option id="Eastern Tibet">Eastern Tibet</option>
+            <option id="Fergana Basin">Fergana Basin</option>
+            <option id="Himalaya">Himalaya</option>
+            <option id="Hindu Kush-Pamir">Hindu Kush-Pamir</option>
+          </select>
+          </div>
+          <button id="search">Search</button>
+
+      </div>
+      <div id="map" class="map">
+
+      </div>
+    </div>
+    <script>
+      var map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([79, 25]),
+      zoom: 4
+    })
+  });
+  //
+  var aarr1 = [33.7934,33.7701,33.6300,33.3842,33.278,33.0789,33.0970,32.8788,32.7136,32.6191,32.5954];
+  var aarr2 = [73.6689,73.6969,73.7391,74.0198,74.0759,74.5812,74.8339,74.9883,75.2269,75.5216,75.6199];
+  var aarr3 = [32.6900,32.4889,32.4297,32.3586,32.2518,32.1295,32.0106,31.8676];
+  var aarr4 = [74.8479,75.2269,75.4374,75.6620,75.6620,75.8094,75.8375,75.9778];
+  var aarr5 = [31.9391,31.7006,31.2457,30.9091,30.8850,30.7886,30.6196,30.4988,30.4504,30.4020,30.3051];
+  var aarr6 = [75.7252,75.9217,76.2305,76.5673,76.7358,76.7919,77.1849,77.2130,77.3253,77.4376,77.5779];
+  var aarr7 = [30.1595,29.9652,29.8435,29.7948,29.6485,29.3308,29.3308,29.1103,29.1349];
+  var aarr8 = [77.9148,78.1394,78.3078,78.5043,78.5605,79.2061,79.4307,79.8237,80.1606];
+  document.getElementById('search').addEventListener('click', function(){
+    if(document.getElementById('India').value=='India'){
+    if(document.getElementById('Himalaya').value=="Himalaya"){
+      for(var i=1;i<10;i++){
+        var lonlat = ol.proj.fromLonLat([aarr2[i], aarr1[i]]);
+                var location2 = ol.proj.fromLonLat([aarr2[i+1], aarr1[i+1]]);
+
+                //create the line's style
+                var linieStyle = [
+                            // linestring
+                            new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                color: 'red',
+                                width: 2
+                              })
+                            })
+                          ];
+
+                //create the line       
+                var linie = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                        features: [new ol.Feature({
+                            geometry: new ol.geom.LineString([lonlat, location2]),
+                            name: 'Line',
+                        })]
+                    })
+                });
+
+                //set the style and add to layer
+                linie.setStyle(linieStyle);
+                map.addLayer(linie);
+      }
+      for(var i=1;i<7;i++){
+        var lonlat = ol.proj.fromLonLat([aarr4[i], aarr3[i]]);
+                var location2 = ol.proj.fromLonLat([aarr4[i+1], aarr3[i+1]]);
+
+                //create the line's style
+                var linieStyle = [
+                            // linestring
+                            new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                color: 'red',
+                                width: 2
+                              })
+                            })
+                          ];
+
+                //create the line       
+                var linie = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                        features: [new ol.Feature({
+                            geometry: new ol.geom.LineString([lonlat, location2]),
+                            name: 'Line',
+                        })]
+                    })
+                });
+
+                //set the style and add to layer
+                linie.setStyle(linieStyle);
+                map.addLayer(linie);
+      }
+
+      for(var i=1;i<10;i++){
+        var lonlat = ol.proj.fromLonLat([aarr6[i], aarr5[i]]);
+                var location2 = ol.proj.fromLonLat([aarr6[i+1], aarr5[i+1]]);
+
+                //create the line's style
+                var linieStyle = [
+                            // linestring
+                            new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                color: 'red',
+                                width: 2
+                              })
+                            })
+                          ];
+
+                //create the line       
+                var linie = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                        features: [new ol.Feature({
+                            geometry: new ol.geom.LineString([lonlat, location2]),
+                            name: 'Line',
+                        })]
+                    })
+                });
+
+                //set the style and add to layer
+                linie.setStyle(linieStyle);
+                map.addLayer(linie);
+      }
+
+      for(var i=1;i<8;i++){
+        var lonlat = ol.proj.fromLonLat([aarr8[i], aarr7[i]]);
+                var location2 = ol.proj.fromLonLat([aarr8[i+1], aarr7[i+1]]);
+
+                //create the line's style
+                var linieStyle = [
+                            // linestring
+                            new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                color: 'red',
+                                width: 2
+                              })
+                            })
+                          ];
+
+                //create the line       
+                var linie = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                        features: [new ol.Feature({
+                            geometry: new ol.geom.LineString([lonlat, location2]),
+                            name: 'Line',
+                        })]
+                    })
+                });
+
+                //set the style and add to layer
+                linie.setStyle(linieStyle);
+                map.addLayer(linie);
+      }
+
+     
+                
+    }
+  }
+  })
+ 
+  
+    </script>
 </body>
 </html>

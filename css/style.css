@@ -81,6 +81,48 @@ html, body {
     width: 30%;
     margin: 100px 0px 20px 100px;
   }
+  .fault-img{
+    width: 375px;
+  }
+  .fault-img >img{
+    width: 100%;
+  }
+  .map-section{
+    display: flex;
+    padding-left: 100px;
+
+  }
+  .map-content{
+    width: 40%;
+    padding: 20px;
+  }
+  .map-content >form{
+    display: flex;
+    justify-content: space-between;
+  }
+  .map-content >form >label{
+    font-size: 20px;
+  }
+  .fault_name{
+    margin-left: 100px;
+  }
+  .map-content >h3{
+    font-size: 23px;
+  }
+  .geo-char-country,.geo-char-province{
+    display: flex;
+    margin: 10px 0px;
+    justify-content: space-between;
+  }
+  #search{
+    padding: 10px 34px;
+
+  }
+  .map{
+    width: 60%;
+    height: 400px;
+    border: 1px solid black;
+  }
   @media screen and (max-width: 768px){
 .nav{
   display:block;
