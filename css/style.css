@@ -116,7 +116,13 @@ html, body {
   }
   #search{
     padding: 10px 34px;
-
+    background-color: darkorange;
+    border: 1px solid darkorange;
+    color: white;
+  }
+  #search:hover{
+    cursor: pointer;
+    background-color: orangered;
   }
   .map{
     width: 60%;
