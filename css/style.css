@@ -103,6 +103,21 @@ html, body {
   .map-content >form >label{
     font-size: 20px;
   }
+  .showAllfaults{
+    padding: 10px 20px;
+    font-family: sans-serif;
+    margin: 10px 0px 30px 0px;
+    font-size: 15px;
+    background-color: #528B8B;
+    color: white;
+    background-color: rgba(82,139,139,0.8);
+    border: 1px solid #528B8B;
+    border-radius: 5px;
+  }
+  .showAllfaults:hover{
+    cursor: pointer;
+    background-color:#528B8B;
+  }
   .fault_name{
     margin-left: 100px;
   }
@@ -119,6 +134,9 @@ html, body {
     background-color: darkorange;
     border: 1px solid darkorange;
     color: white;
+    margin: 20px 0px;
+    font-size: 16px;
+    border-radius: 5px;
   }
   #search:hover{
     cursor: pointer;
