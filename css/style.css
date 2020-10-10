@@ -17,11 +17,17 @@ html, body {
     margin-right: 40px;
     display: none;
   }
+   .logo{
+    margin-left: 100px;    
+   }
   .logo img{
-    margin-top: 5px;
+    margin: 5px;
     height:50px;
     width: 50px;
     border-radius: 50%;
+  }
+   .listDiv{
+    margin-top: 10px;
   }
   #check{
     display: block;
@@ -58,23 +64,35 @@ html, body {
     text-align: center;
     font-family: sans-serif;
     font-size: 20px;
+    margin-top: 25px;
   }
+  .heading >h1{
+   font-weight: 600; 
+   }
   .sub-heading{
     display: flex;
     margin-left: 100px;
+    margin-top: 30px;
   }
   .subheading-text{
     display: inline-block;
     width: 60%;
   }
+  .subheading-text >h1{
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: bold; 
+  }
   .subheading-text >h3{
     font-family: sans-serif;
     font-size: 20px;
+    font-weight: 600;
   }
   .subheading-text >p{
     font-size: 17px;
     line-height: 1.5;
     font-family: sans-serif;
+      color: black;
   }
   .fault-mapping{
     margin-left: 100px;
@@ -104,7 +122,7 @@ html, body {
     font-size: 20px;
   }
   .showAllfaults{
-    padding: 10px 20px;
+    padding: 8px 20px;
     font-family: sans-serif;
     margin: 10px 0px 30px 0px;
     font-size: 15px;
@@ -120,9 +138,25 @@ html, body {
   }
   .fault_name{
     margin-left: 100px;
+    height: 28px;
+  }
+  #country_name{
+    height: 23px;
+    font-size: 14px;
+  }
+  #province_name{
+    height: 23px;
+    font-size: 14px; 
+  }
+  #state_name{
+    height: 23px;
+    font-size: 14px;  
+  }
+  .geo_char{
+    margin-top: 20px;
   }
   .map-content >h3{
-    font-size: 23px;
+    font-size: 20px;
   }
   .geo-char-country,.geo-char-province{
     display: flex;
@@ -130,7 +164,7 @@ html, body {
     justify-content: space-between;
   }
   #search{
-    padding: 10px 34px;
+    padding: 6px 34px;
     background-color: darkorange;
     border: 1px solid darkorange;
     color: white;
@@ -154,6 +188,9 @@ html, body {
   .searchstate_level >label{
     font-size: 19px;
     font-weight: 600;
+  }
+  .popover-body {
+    min-width: 240px;
   }
   @media screen and (max-width: 768px){
 .nav{
