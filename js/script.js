@@ -220,12 +220,12 @@ if(document.getElementById('state_name').value==='Himachal Pradesh'){
 
 var popup = new ol.Overlay({
   element: document.getElementById('popup'),
-  });
+});
   map.addOverlay(popup);
   map.on('click', function (evt) {
   var element = popup.getElement();
   var coordinate = evt.coordinate;
-  var hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+  var hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));  
   console.log(element);
   $(element).popover('dispose');
   popup.setPosition(coordinate);
@@ -239,3 +239,10 @@ var popup = new ol.Overlay({
   $(element).popover('show');
  }); 
 
+ map.on("pointermove", function(event) {
+  console.log(event);
+  var lonlat = ol.proj.transform(event.coordinate, 'EPSG:3857',
+  'EPSG:4326');
+  document.getElementById('lat').textContent = lonlat[0];
+  document.getElementById('long').textContent = lonlat[1];
+ });
