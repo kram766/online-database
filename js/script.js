@@ -51,6 +51,7 @@ document.querySelector(".showAllfaults").addEventListener('click',function(){
                       features: [new ol.Feature({
                           geometry: new ol.geom.LineString([lonlat, location2]),
                           name: 'Line',
+                          prop :allData[0].features[k].properties
                       })]
                   })
               });
@@ -221,12 +222,35 @@ if(document.getElementById('state_name').value==='Himachal Pradesh'){
 var popup = new ol.Overlay({
   element: document.getElementById('popup'),
 });
-  map.addOverlay(popup);
-  map.on('click', function (evt) {
-  var element = popup.getElement();
-  var coordinate = evt.coordinate;
+map.addOverlay(popup); 
+map.on('click', function(evt){
+    var feature = map.forEachFeatureAtPixel(evt.pixel,
+      function(feature, layer) {
+        return feature;
+      });
+        console.log(feature);
+
+    if(feature.values_.prop.Id.length>0){
+        feature.values_.prop.Id.length = feature.values_.prop.Id.length;      
+    }
+    else{
+        feature.values_.prop.Id.length = "";
+    }
+      if(feature.values_.prop.Name.length>0){
+        feature.values_.prop.Name.length = feature.values_.prop.Name.length;      
+    }
+    else{
+        feature.values_.prop.Name.length = "";
+    }
+      if(feature.values_.prop.Type.length>0){
+        feature.values_.prop.Type.length = feature.values_.prop.Type.length;      
+    }
+    else{
+        feature.values_.prop.Type.length = "";
+    }
+    var element = popup.getElement();
+    var coordinate = evt.coordinate;
   var hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));  
-  console.log(element);
   $(element).popover('dispose');
   popup.setPosition(coordinate);
   $(element).popover({
@@ -234,13 +258,14 @@ var popup = new ol.Overlay({
   placement: 'top',
   animation: false,
   html: true,
-  content: '<p>The location you clicked was:</p><code>' + hdms + '</code>',
+  content:+'ID'+'<br>'+'Name : '+feature.values_.prop.Name+'<br>'+'Type : '+feature.values_.prop.Type
+      
   });
   $(element).popover('show');
- }); 
+});
+
 
  map.on("pointermove", function(event) {
-  console.log(event);
   var lonlat = ol.proj.transform(event.coordinate, 'EPSG:3857',
   'EPSG:4326');
   document.getElementById('lat').textContent = lonlat[0];
