@@ -362,6 +362,9 @@ html, body {
 #latlong {
     text-align: center;
     font-size: 12px;
-    transform: translate(50px, 25px);
+    transform: translate(-11px, 25px);
+}
+.map-content >form >label {
+    font-size: 16px;
 }
 }
