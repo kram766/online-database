@@ -22,15 +22,16 @@ document.addEventListener('click',function(){
   $.get('xfaults.json',function (data,stauts) {
       if(allData.length==0){
         allData.push(data);
-        console.log(allData);          
       }
 
   })
 })
 document.querySelector(".showAllfaults").addEventListener('click',function(){
     setTimeout(()=>{
-      for(var k=0;k<allData[0].features.length-1;k++){
-      for(var i=0;i<allData[0].features[k].geometry.coordinates.length-1;i++){
+      var featureLength = allData[0].features.length-1;
+      var k,i;
+      for(k=0;k<featureLength;k++){
+      for(i=0;i<allData[0].features[k].geometry.coordinates.length-1;i++){
       var lonlat = ol.proj.fromLonLat([allData[0].features[k].geometry.coordinates[i][0], allData[0].features[k].geometry.coordinates[i][1]]);
               var location2 = ol.proj.fromLonLat([allData[0].features[k].geometry.coordinates[i+1][0], allData[0].features[k].geometry.coordinates[i+1][1]]);
 
@@ -61,15 +62,6 @@ document.querySelector(".showAllfaults").addEventListener('click',function(){
               map.addLayer(linie);
       }         
       }
-      for(var k=0;k<allData[0].features.length-1;k++){
-      for(var i=0;i<allData[0].features[i].geometry.coordinates.length-1;i++){
-        console.log(allData[0].features[i].geometry.coordinates[i][0]) ;
-         console.log(allData[0].features[i].geometry.coordinates[i][1]) ;
-        console.log(allData[0].features[i].geometry.coordinates[i+1][0]) ;
-        console.log(allData[0].features[i].geometry.coordinates[i+1][1]) ;
-         
-      }
-          }
         
     },1000);
 })
@@ -114,7 +106,6 @@ document.getElementById('search').addEventListener('click', function(){
 
  }
 if(document.getElementById('state_name').value=='Uttarakhand'){
-   console.log("uttarakhand")
       for (var k=0;k<utarray.length-1;k++){
       for(var i=0;i<allData[0].features[utarray[k]].geometry.coordinates.length-1;i++){
       var lonlat = ol.proj.fromLonLat([allData[0].features[utarray[k]].geometry.coordinates[i][0], allData[0].features[utarray[k]].geometry.coordinates[i][1]]);
@@ -228,7 +219,6 @@ map.on('click', function(evt){
       function(feature, layer) {
         return feature;
       });
-        console.log(feature);
 
     if(feature.values_.prop.Id.length>0){
         feature.values_.prop.Id = feature.values_.prop.Id;      
