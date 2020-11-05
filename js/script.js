@@ -231,22 +231,22 @@ map.on('click', function(evt){
         console.log(feature);
 
     if(feature.values_.prop.Id.length>0){
-        feature.values_.prop.Id.length = feature.values_.prop.Id.length;      
+        feature.values_.prop.Id = feature.values_.prop.Id;      
     }
     else{
-        feature.values_.prop.Id.length = "";
+        feature.values_.prop.Id = "";
     }
       if(feature.values_.prop.Name.length>0){
-        feature.values_.prop.Name.length = feature.values_.prop.Name.length;      
+        feature.values_.prop.Name = feature.values_.prop.Name;      
     }
     else{
-        feature.values_.prop.Name.length = "";
+        feature.values_.prop.Name = "";
     }
       if(feature.values_.prop.Type.length>0){
-        feature.values_.prop.Type.length = feature.values_.prop.Type.length;      
+        feature.values_.prop.Type = feature.values_.prop.Type;      
     }
     else{
-        feature.values_.prop.Type.length = "";
+        feature.values_.prop.Type = "";
     }
     var element = popup.getElement();
     var coordinate = evt.coordinate;
@@ -258,7 +258,7 @@ map.on('click', function(evt){
   placement: 'top',
   animation: false,
   html: true,
-  content:+'ID'+'<br>'+'Name : '+feature.values_.prop.Name+'<br>'+'Type : '+feature.values_.prop.Type
+  content:'<p id="fault_id">'+'ID : '+feature.values_.prop.Id +'</p>'+'<p id="fault_name">'+'Name : '+feature.values_.prop.Name+'</p>'+'<p id="falut_type">'+'Type : '+feature.values_.prop.Type + '</p>'
       
   });
   $(element).popover('show');
