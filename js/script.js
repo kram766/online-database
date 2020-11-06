@@ -26,6 +26,89 @@ document.addEventListener('click',function(){
 
   })
 })
+var input = document.querySelector(".fault_name");
+input.addEventListener("keypress", function(event) {
+  if(event.which == 13){
+    event.preventDefault();
+    var faultName = input.value;
+    var featureLength = allData[0].features.length-1;
+    var rp;
+    for(rp=0;rp<featureLength;rp++){
+      if(allData[0].features[rp].properties.Name===faultName){
+        var coordinateLength = allData[0].features[rp].geometry.coordinates.length;
+        var k,i;
+        if(allData[0].features[rp].geometry.coordinates[0].length>2){
+          var innerCoordinateLength = coordinateLength;
+          for(k=0;k<innerCoordinateLength;k++){
+            for(i=0;i<allData[0].features[rp].geometry.coordinates[k].length-1;i++){
+            var lonlat = ol.proj.fromLonLat([allData[0].features[rp].geometry.coordinates[k][i][0], allData[0].features[rp].geometry.coordinates[k][i][1]]);
+                    var location2 = ol.proj.fromLonLat([allData[0].features[rp].geometry.coordinates[k][i+1][0], allData[0].features[rp].geometry.coordinates[k][i+1][1]]);
+      
+                    //create the line's style
+                    var linieStyle = [
+                                // linestring
+                                new ol.style.Style({
+                                  stroke: new ol.style.Stroke({
+                                    color: 'red',
+                                    width: 2
+                                  })
+                                })
+                              ];
+      
+                    //create the line       
+                    var linie = new ol.layer.Vector({
+                            source: new ol.source.Vector({
+                            features: [new ol.Feature({
+                                geometry: new ol.geom.LineString([lonlat, location2]),
+                                name: 'Line',
+                                prop :allData[0].features[k].properties
+                            })]
+                        })
+                    });
+      
+                    //set the style and add to layer
+                    linie.setStyle(linieStyle);
+                    map.addLayer(linie);
+            }         
+            }    
+        }
+        for(k=rp;k<rp+1;k++){
+        for(i=0;i<allData[0].features[k].geometry.coordinates.length-1;i++){
+        var lonlat = ol.proj.fromLonLat([allData[0].features[k].geometry.coordinates[i][0], allData[0].features[k].geometry.coordinates[i][1]]);
+                var location2 = ol.proj.fromLonLat([allData[0].features[k].geometry.coordinates[i+1][0], allData[0].features[k].geometry.coordinates[i+1][1]]);
+  
+                //create the line's style
+                var linieStyle = [
+                            // linestring
+                            new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                color: 'red',
+                                width: 2
+                              })
+                            })
+                          ];
+  
+                //create the line       
+                var linie = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                        features: [new ol.Feature({
+                            geometry: new ol.geom.LineString([lonlat, location2]),
+                            name: 'Line',
+                            prop :allData[0].features[k].properties
+                        })]
+                    })
+                });
+  
+                //set the style and add to layer
+                linie.setStyle(linieStyle);
+                map.addLayer(linie);
+        }         
+        }
+    }
+    }
+  }
+});
+
 document.querySelector(".showAllfaults").addEventListener('click',function(){
     setTimeout(()=>{
       var featureLength = allData[0].features.length-1;
