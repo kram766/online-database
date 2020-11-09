@@ -227,6 +227,23 @@ html, body {
 .ol-attribution.ol-uncollapsible{
     display: none;
 }
+.fault_num{
+  display: inline-block;
+  margin-right: 7px;
+}
+.found_faults{
+  display: none;
+}
+.importNofoundClass{
+  display: block;
+  text-align: center;
+  background-color: #FFC0CB;
+}
+.importFounfClass{
+  display: block;
+  text-align: center;
+  background-color: greenyellow;
+}
   @media screen and (max-width: 1024px){
    .fault-mapping {
     margin-left: 100px;

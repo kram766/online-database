@@ -16,12 +16,13 @@ var utarray = [235,904,743,748,232,233,235,236,246,249,250,252,747,748,894,893,8
 var Hp = [225,228,229,230,231,232,234,237,238,239,240,241,242,243,244,245,247,248,251,253,254,255,256,257,258]
 var jkarray = [225,226,228,229,237,271,280,289,290,291,292,293,294,295,296,298,299,300,304,305,306,307,308,310,312,313,314,864,886,888];
 var himProv = [5,52,53,220,226,244,934,185,201,202,215,225,228,231,232,246,313,697,859,901,928,934,935,936,214,289,689,889,890,891,892,938,939,940,941,162,165,166,167,174,178,188,189,289];
-
+var no_ofFaults = 0;
 var allData = [];
 document.addEventListener('click',function(){
   $.get('xfaults.json',function (data,stauts) {
       if(allData.length==0){
         allData.push(data);
+        console.log(allData);
       }
 
   })
@@ -35,6 +36,8 @@ input.addEventListener("keypress", function(event) {
     var rp;
     for(rp=0;rp<featureLength;rp++){
       if(allData[0].features[rp].properties.Name===faultName){
+          no_ofFaults++;
+          console.log(rp);
         var coordinateLength = allData[0].features[rp].geometry.coordinates.length;
         var k,i;
         if(allData[0].features[rp].geometry.coordinates[0].length>2){
@@ -107,6 +110,16 @@ input.addEventListener("keypress", function(event) {
     }
     }
   }
+  var faultNum = document.querySelector('.fault_num');
+  var faultDesc = document.querySelector('.found_faults');
+  if(no_ofFaults>0){
+    faultDesc.classList.add('importFounfClass');
+
+  }
+  else{
+    faultDesc.classList.add('importNofoundClass');
+  }
+  faultNum.textContent = no_ofFaults;
 });
 
 document.querySelector(".showAllfaults").addEventListener('click',function(){
@@ -114,7 +127,8 @@ document.querySelector(".showAllfaults").addEventListener('click',function(){
       var featureLength = allData[0].features.length-1;
       var k,i;
       for(k=0;k<featureLength;k++){
-      for(i=0;i<allData[0].features[k].geometry.coordinates.length-1;i++){
+      var innerCoordinateLength = allData[0].features[k].geometry.coordinates.length-1;
+      for(i=0;i<innerCoordinateLength;i++){
       var lonlat = ol.proj.fromLonLat([allData[0].features[k].geometry.coordinates[i][0], allData[0].features[k].geometry.coordinates[i][1]]);
               var location2 = ol.proj.fromLonLat([allData[0].features[k].geometry.coordinates[i+1][0], allData[0].features[k].geometry.coordinates[i+1][1]]);
 
@@ -302,7 +316,7 @@ map.on('click', function(evt){
       function(feature, layer) {
         return feature;
       });
-
+    console.log(feature);
     if(feature.values_.prop.Id.length>0){
         feature.values_.prop.Id = feature.values_.prop.Id;      
     }
