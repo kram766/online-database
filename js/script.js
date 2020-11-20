@@ -32,10 +32,11 @@ input.addEventListener("keypress", function(event) {
   if(event.which == 13){
     event.preventDefault();
     var faultName = input.value;
+    var regex = new RegExp(faultName,'ig');
     var featureLength = allData[0].features.length-1;
     var rp;
     for(rp=0;rp<featureLength;rp++){
-      if(allData[0].features[rp].properties.Name===faultName){
+      if(allData[0].features[rp].properties.Name.match(regex)){
           no_ofFaults++;
           console.log(rp);
         var coordinateLength = allData[0].features[rp].geometry.coordinates.length;
