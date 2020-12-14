@@ -121,6 +121,17 @@ input.addEventListener("keypress", function(event) {
     faultDesc.classList.add('importNofoundClass');
   }
   faultNum.textContent = no_ofFaults;
+    setTimeout(()=>{
+    console.log("time over");
+    $(document).ready(function() {
+ 
+     $('#map_section').animate({
+        scrollTop: -(document.getElementById('map_section').offsetHeight),                       
+        }, 1000);        
+    });
+      
+    },2000);
+
 });
 
 document.querySelector(".showAllfaults").addEventListener('click',function(){
